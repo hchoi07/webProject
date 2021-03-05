@@ -1,20 +1,20 @@
 const mysql = require('mysql');
 
-const mysqlConnection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: "APIDatabase",
-    multipleStatements: true
-});
-
 // const mysqlConnection = mysql.createConnection({
-//     host: 'd-usw2-demo.cluster-cfvxocyrwjwo.us-west-2.rds.amazonaws.com',
-//     user: 'dev01',
-//     password: '4dta!30',
-//     database: "dev01",
+//     host: 'localhost',
+//     user: 'root',
+//     password: '',
+//     database: "APIDatabase",
 //     multipleStatements: true
 // });
+
+const mysqlConnection = mysql.createConnection({
+    host: 'd-usw2-demo.cluster-cfvxocyrwjwo.us-west-2.rds.amazonaws.com',
+    user: 'dev01',
+    password: '4dta!30',
+    database: "dev01",
+    multipleStatements: true
+});
 
 
 
