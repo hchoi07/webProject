@@ -55,7 +55,7 @@
       // console.log("data printed from fetchVotes: ", postId);
       $.ajax({
         type: "GET",
-        url: '/api/posts/' + postId + "/votes",
+        url: 'http://54.202.165.130/api/posts/' + postId + "/votes",
         success: function(data) {
             // console.log('from post.js: THIS IS THE VOTES COUNT: ', data[0].count);
             let Vcount = String(data[0].count);
@@ -80,7 +80,7 @@
     }
     $.ajax({
         type: "GET",
-        url: "/api/posts",
+        url: "http://54.202.165.130/api/posts",
         // contentType: "application/json", -> defines body type 
         // data: JSON.stringify({companies}), -> body of request if POST/PUT 
         success: success,
@@ -102,7 +102,7 @@
         //console.log("$$$$$$$THIS IS THE POSTS DATA", data);
         $.ajax({
             type: "POST",
-            url: "/api/posts",
+            url: "http://54.202.165.130/api/posts",
             contentType: "application/json",
             data: JSON.stringify(data),
             // beforeSend: function () {   //Include the bearer token in header
@@ -117,7 +117,7 @@
             error: function(data) {
                 //alert("POSTING ERROR: " + data); //error page?
                 //$("errorPage").html(error_page);
-                window.location.replace("/401");
+                window.location.replace("http://54.202.165.130/401");
             }
         });
     });

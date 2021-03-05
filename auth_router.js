@@ -70,7 +70,7 @@ router.get('/logout/complete', (req, res) => {
     if (req.cookies.jwt) {
         res.clearCookie('jwt');
     }
-    res.redirect('http://localhost:5000');
+    res.redirect('http://54.202.165.130/posts');
 
 })
 
@@ -130,7 +130,7 @@ router.get('/sa/signin/callback', (req, res)=> {
             queryLibrary.getUser(profile.guid)
                 .then(data=> {
                     //console.log(data);
-                    res.status(200).redirect('http://localhost:5000/posts');
+                    res.status(200).redirect('http://54.202.165.130/posts');
                 })
                 .catch(err => {
                     console.error("GET function error: ", err);
