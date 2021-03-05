@@ -7,7 +7,7 @@
     </div>
         <h6 class="card-footer text-muted align-middle" id="comment_title" meta_commentId="{{ID}}">Posted by {{Saguid}} {{date}}
         <div class="btn-toolbar float-right">
-            <button type="button" id="like_button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#edit_post_modal"><i class="far fa-heart"></i>
+            <button type="button" id="like_button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#edit_post_modal"><i class="far fa-heart"></i></button>
         </div>
         </h6>
 
@@ -18,7 +18,7 @@
     <button type="button" id="delete_comment_button" class="btn btn-outline-secondary"><i class="far fa-trash-alt"></i>
         </button>`.trim();
 
-    let optional_toolbar = `<button type="button" id="like_button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#edit_post_modal"><i class="far fa-heart"></i>`.trim();
+    let optional_toolbar = `<button type="button" id="like_button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#edit_post_modal"><i class="far fa-heart"></i></button>`.trim();
         
     // (window.currSession && window.currSession.id == Saguid) 
 
@@ -64,7 +64,9 @@
 
             if(author === id) {
                 console.log("Comment author ", author, " is equal to the currUser ", id);
-                comment_html.replace(optional_toolbar, ifCurrUser_html);
+                console.log("original one = ", comment_html);
+                comment_html = comment_html.replace(optional_toolbar, ifCurrUser_html);
+                console.log("replaced one = ", comment_html);
                 html += comment_html
                 .replace(/{{Saguid}}/g, comment.Saguid)
                 .replace(/{{content}}/g, comment.content)
