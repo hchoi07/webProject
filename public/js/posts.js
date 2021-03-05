@@ -30,25 +30,28 @@
     function success(data) {
 
         let html = '';
-        data.forEach(post => {
-          console.log("post id:",post.ID);
-          let Vcount = fetchVotes(post.ID);
-            html += post_html
-            .replace(/{{Title}}/g, post.title)
-            .replace(/{{Author}}/g, post.Saguid)
-            .replace(/{{Content}}/g, post.content)
-            //.replace(/{{Date}}/g, post.date)
-            .replace(/{{Date}}/g, moment(post.date).fromNow())
-            .replace(/{{ID}}/g, post.ID)
-            ; //g means global
-            // chain upvote info here
-            
+        if (data) {
+          data.forEach(post => {
+            console.log("post id:",post.ID);
+            let Vcount = fetchVotes(post.ID);
+              html += post_html
+              .replace(/{{Title}}/g, post.title)
+              .replace(/{{Author}}/g, post.Saguid)
+              .replace(/{{Content}}/g, post.content)
+              //.replace(/{{Date}}/g, post.date)
+              .replace(/{{Date}}/g, moment(post.date).fromNow())
+              .replace(/{{ID}}/g, post.ID)
+              ; //g means global
+              // chain upvote info here
+              
 
-            // console.log("Vcount is = ", Vcount);
-        });
+              // console.log("Vcount is = ", Vcount);
+          });
+      }
 
         console.log("***THE POST DATAS: ", data);
         console.log("***THE HTML: ", data);
+        console.log("***THE HTML: ", html);
         $("#post_container").html(html);
     }
 
@@ -87,7 +90,9 @@
         success: success,
         error: error, 
     });
-    $(function() {
+
+    
+    $(document).ready(function() {
       $("#new_post_button").on('click', function() {
       })
       $("#new_post_form").on('submit', function(e) {
