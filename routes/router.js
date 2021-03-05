@@ -7,7 +7,7 @@ const { query } = require('express');
 
 
 // Create a new post
-router.post('http://54.202.165.130/posts', (req, res, next) => {
+router.post('/', (req, res, next) => {
     if(req.currentUser === undefined) {
         // return res.redirect('http://localhost:5000/401');
         //return res.status(401).json( {msg: 'You must be logged in to submit a post!'});
@@ -42,7 +42,7 @@ router.post('http://54.202.165.130/posts', (req, res, next) => {
 
 
 // Updates a post
-router.put('http://54.202.165.130/:ID', (req, res, next) => {
+router.put('/:ID', (req, res, next) => {
     if(req.currentUser === undefined) {
         return next('/401');
     }
@@ -72,7 +72,7 @@ router.put('http://54.202.165.130/:ID', (req, res, next) => {
 
 
 // Delete a post
-router.delete('http://54.202.165.130/:ID', (req, res) => {
+router.delete('/:ID', (req, res) => {
     const ID = req.params.ID;
     if(req.currentUser === undefined) {
         return;
@@ -91,7 +91,7 @@ router.delete('http://54.202.165.130/:ID', (req, res) => {
 
 
 // Delete comment
-router.delete('http://54.202.165.130/:ID/comments/:commentID', (req, res, next) => {
+router.delete('/:ID/comments/:commentID', (req, res, next) => {
     const ID = req.params.ID;
     const commentID = req.params.commentID;
     if(req.currentUser === undefined) {
@@ -110,7 +110,7 @@ router.delete('http://54.202.165.130/:ID/comments/:commentID', (req, res, next) 
 });
 
 // Upvote
-router.post('http://54.202.165.130/:ID/votes', (req, res, next) => {
+router.post('/:ID/votes', (req, res, next) => {
     const postID = req.params.ID;
     if(req.currentUser === undefined) {
         return next('/401');
@@ -130,7 +130,7 @@ router.post('http://54.202.165.130/:ID/votes', (req, res, next) => {
 
 
 // Create a comment
-router.post('http://54.202.165.130/:ID', (req, res) => {
+router.post('/:ID', (req, res) => {
     //console.log("@@@@@Create comment function");
     console.log('CURRENT USER IS= ', req.currentUser);
     // console.log('CURRENT USER ID IS= ', req.currentUser.userId);
@@ -158,7 +158,7 @@ router.post('http://54.202.165.130/:ID', (req, res) => {
 
 
 // Gets all posts
-router.get('http://54.202.165.130', (req, res) => {
+router.get('/', (req, res) => {
     //console.log("testtesttest");
     //res.json(posts);
     queryLibrary.getAllPosts()
@@ -173,7 +173,7 @@ router.get('http://54.202.165.130', (req, res) => {
 
 
 // Gets a single post
-router.get('http://54.202.165.130/:ID', (req, res) => {
+router.get('/:ID', (req, res) => {
     const ID = req.params.ID;
     //console.log(req.params);
     queryLibrary.getPost(ID)
@@ -188,7 +188,7 @@ router.get('http://54.202.165.130/:ID', (req, res) => {
 });
 
 
-router.get('http://54.202.165.130/:ID/votes', (req, res) => {
+router.get('/:ID/votes', (req, res) => {
     const ID = req.params.ID;
     queryLibrary.getUpvotes(ID)
         .then(data=> {
@@ -221,7 +221,7 @@ router.get('http://54.202.165.130/:ID/votes', (req, res) => {
 
 
 // Update User
-router.put('http://54.202.165.130/:ID', (req, res) => {
+router.put('/:ID', (req, res) => {
     const found = members.some(idFilter(req));
   
     if (found) {
@@ -241,7 +241,7 @@ router.put('http://54.202.165.130/:ID', (req, res) => {
 //-----------------------
 
 // Get all comments (? Helper function?)
-router.get('http://54.202.165.130/:ID/comments', (req, res) => {
+router.get('/:ID/comments', (req, res) => {
     const parentPostID = req.params.ID;
     queryLibrary.getAllComments(parentPostID)
         .then(data => {
@@ -255,7 +255,7 @@ router.get('http://54.202.165.130/:ID/comments', (req, res) => {
 
 
 // Update comment
-router.put('http://54.202.165.130/:ID/comments/:commentID', (req, res) => {
+router.put('/:ID/comments/:commentID', (req, res) => {
     const ID = req.params.ID;
     const commentID = req.params.commentID;
     const updComment = {

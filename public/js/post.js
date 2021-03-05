@@ -34,7 +34,7 @@
     
     $.ajax({
         type: "GET",
-        url: 'http://54.202.165.130/api/posts/' + postId + "/votes",
+        url: '/api/posts/' + postId + "/votes",
         success: function(data) {
             // console.log('from post.js: THIS IS THE VOTES COUNT: ', data[0].count);
             let Vcount = String(data[0].count);
@@ -80,7 +80,7 @@
                 .replace(/{{date}}/g, moment(comment.date).fromNow())
                 .replace(/{{ID}}/g, comment.commentID); //g means global
                 console.log("if author", author, "= id ", id ," then resulting html is ", html);
-                console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+            //     console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
             }
 
             // html += comment_html
@@ -90,7 +90,6 @@
             // .replace(/{{ID}}/g, comment.commentID); //g means global
 
             // if(author === id) {
-
             //     console.log("Comment author ", author, " is equal to the currUser ", id);
             //     html = html.replace(optional_toolbar, ifCurrUser_html);
             //     console.log("if author", author, "= id ", id ," then resulting html is ", html);
@@ -118,7 +117,7 @@
     }
     $.ajax({
         type: "GET",
-        url: "http://54.202.165.130/api/posts/" + postId + "/comments",
+        url: "/api/posts/" + postId + "/comments",
         success: getSuccess,
         error: getError
     });
@@ -136,7 +135,7 @@
         // console.log("THIS IS THE COMMENT DATA", data);
         $.ajax({
             type: "POST",
-            url: "http://54.202.165.130/api/posts/" + postId,
+            url: "/api/posts/" + postId,
             contentType: "application/json",
             data: JSON.stringify(data),
             success: function(data) {
@@ -165,7 +164,7 @@
             console.log("THIS IS THE EDITED DATA", data);
             $.ajax({
                 type: "PUT",
-                url: "http://54.202.165.130/api/posts/" + postId,
+                url: "/api/posts/" + postId,
                 contentType: "application/json",
                 data: JSON.stringify(data),
                 success: function() {
@@ -186,9 +185,9 @@
                 console.log("DELETING POST ********$$$$$$");
                 $.ajax({
                     type:"DELETE",
-                    url: "http://54.202.165.130/api/posts/" + postId,
+                    url: "/api/posts/" + postId,
                     success: function() {
-                        window.location.replace("http://54.202.165.130/posts");
+                        window.location.replace("/posts");
                     },
                     error: function() {
                         console.log("ERROR WHILE DELETING POST= ", error);
@@ -211,7 +210,7 @@
                 console.log("DELETING COMMENT ********$$$$$$");
                 $.ajax({
                     type:"DELETE",
-                    url: "http://54.202.165.130/api/posts/" + postId + "/comments/" + commentID,
+                    url: "/api/posts/" + postId + "/comments/" + commentID,
                     success: function() {
                         window.location.reload();
                     },
@@ -228,12 +227,12 @@
             // console.log("SOMEONE JUST UPVOTED####");
             $.ajax({
             type:"POST",
-            url: "http://54.202.165.130/api/posts/" + postId + "/votes",
+            url: "/api/posts/" + postId + "/votes",
             success: function(data) {
               window.location.reload();
             },
             error: function(data) {
-              window.location.replace("http://54.202.165.130/401");
+              window.location.replace("/401");
             }
             
           })

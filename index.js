@@ -42,14 +42,14 @@ app.use('/api/posts', router);
 
 
 
-app.get('http://54.202.165.130/posts', (req, res) => {
+app.get('/posts', (req, res) => {
     let loginState = req.isLoggedIn;
     // let count = req.count;
     //console.log("my user session:", req.user);
     utils.renderHelper(req, res, 'pages/posts.ejs', {page: "posts_page", loginState});
 })
 
-app.get('http://54.202.165.130/posts/:ID', (req, res) => {
+app.get('/posts/:ID', (req, res) => {
     let loginState = req.isLoggedIn;
     // let count = req.count;
     let currSession = req.currentUser;
@@ -67,7 +67,7 @@ app.get('http://54.202.165.130/posts/:ID', (req, res) => {
 });
 
 
-app.get('http://54.202.165.130/', (req, res) => {
+app.get('/', (req, res) => {
     //console.log('this is the user***:', req.user);
     if (req.user) {
         res.redirect('/posts');
@@ -84,7 +84,7 @@ app.get('http://54.202.165.130/', (req, res) => {
 //     utils.renderHelper(req, res, 'pages/new.ejs', {posts});
 // })
 
-app.get('http://54.202.165.130/401', (req, res) => {
+app.get('/401', (req, res) => {
     res.render('pages/401');
 })
 

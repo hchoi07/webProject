@@ -50,7 +50,7 @@ function extractProfileInfo(body, accessToken) {
 }
 
 
-router.get('http://54.202.165.130/posts/login', (req, res)=> {
+router.get('/login', (req, res)=> {
     const state = 'LoggedIN';
     const endpoint = '/sa/signin/callback';
     let url = checkAuth.encodeSignInQuery(state, endpoint);
@@ -58,19 +58,19 @@ router.get('http://54.202.165.130/posts/login', (req, res)=> {
     res.redirect(url);
 })
 
-router.get('http://54.202.165.130/posts/logout', (req, res)=> {
+router.get('/logout', (req, res)=> {
     const state = 'LoggedOUT';
     let url = checkAuth.encodeSignOutQuery(state);
     console.log('this is the redirect url=', url);
     res.redirect(url);
 })
 
-router.get('http://54.202.165.130/posts/logout/complete', (req, res) => {
+router.get('/logout/complete', (req, res) => {
     req.user = null;
     if (req.cookies.jwt) {
         res.clearCookie('jwt');
     }
-    res.redirect('http://54.202.165.130/posts');
+    res.redirect('http://localhost:5000');
 
 })
 
@@ -130,7 +130,7 @@ router.get('/sa/signin/callback', (req, res)=> {
             queryLibrary.getUser(profile.guid)
                 .then(data=> {
                     //console.log(data);
-                    res.status(200).redirect('http://54.202.165.130/posts');
+                    res.status(200).redirect('http://localhost:5000/posts');
                 })
                 .catch(err => {
                     console.error("GET function error: ", err);
