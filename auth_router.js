@@ -50,7 +50,7 @@ function extractProfileInfo(body, accessToken) {
 }
 
 
-router.get('/login', (req, res)=> {
+router.get('http://54.202.165.130/login', (req, res)=> {
     const state = 'LoggedIN';
     const endpoint = '/sa/signin/callback';
     let url = checkAuth.encodeSignInQuery(state, endpoint);
@@ -58,7 +58,7 @@ router.get('/login', (req, res)=> {
     res.redirect(url);
 })
 
-router.get('/logout', (req, res)=> {
+router.get('http://54.202.165.130/logout', (req, res)=> {
     const state = 'LoggedOUT';
     let url = checkAuth.encodeSignOutQuery(state);
     console.log('this is the redirect url=', url);
