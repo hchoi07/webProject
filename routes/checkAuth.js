@@ -13,9 +13,9 @@ function encodeSignInQuery(state, endpoint) {
             locale :'en',
             countryCode:'US',
             client_id :'3694457r8f',
-            redirect_uri :'http://54.202.165.130' + endpoint,
+            redirect_uri :'http://localhost:5000' + endpoint,
             state : state,
-            goBackURL : 'http://54.202.165.130'
+            goBackURL : 'http://localhost:5000'
         }
     }
     let querystring = data.url;
@@ -32,7 +32,7 @@ function encodeSignOutQuery(state) {
         params : {
             client_id :'3694457r8f',
             state : state,
-            signOutURL : 'http://54.202.165.130/logout/complete'
+            signOutURL : 'http://localhost:5000/logout/complete'
         }
     }
     let querystring = data.url;
@@ -80,7 +80,7 @@ const authenticateJWT = (req, res, next) => {
             }
             req.isLoggedIn = true;
             req.currentUser = user;
-            console.log("this is the current user= ", req.currentUser);
+            //console.log("this is the current user= ", req.currentUser);
             //console.log("this is the current user's Saguid= ", req.currentUser.user.userId);
 
             next();
