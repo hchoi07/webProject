@@ -1,0 +1,119 @@
+<!DOCTYPE html> 
+<html> 
+  
+<head> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no">
+    <%- include ('../partials/head.ejs') %>
+
+      <!-- Custom fonts for this template -->
+
+
+
+</head> 
+  
+<body> 
+
+    <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+     
+      <div class="collapse navbar-collapse justify-content-end" id="navbarResponsive">
+        <ul class="navbar-nav mr-auto ">
+             <%if (loginState) { %>
+                <li class="nav-item">
+                    <a class="nav-link" href='/logout'>Logout</a>
+                  </li>
+            <% } else{ %>  
+                <li class="nav-item">
+                    <a class="nav-link" href='/login'>Login</a>
+                  </li>
+            <% } %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <!---Page Header-->
+
+    <header class="masthead" style="background-image: url('img/red_sky.jpg')">
+        <div class="overlay"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+              <div class="site-heading">
+                <h1>The Free Forum</h1>
+                <span class="subheading">Browse the most relevant topics on the internet.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+    <!-- Main Content -->
+
+    <div class="container">
+        
+        
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="post-preview" id="post_container"></div>
+                <!-- Pager -->
+
+            </div>
+        </div>
+        <div class="container">
+            <br>
+            <br>
+            <%if (loginState) { %>
+                <div class="btn-toolbar; float-right">
+                    <label><small class="text-muted">new post</small></label>
+                    <button type="button" class="btn btn-outline-secondary btn-lg" data-toggle="modal" data-target="#new_post_modal"><i class="fas fa-pen"></i></button>
+                </div>
+            <% } %>
+        </div>
+        <br>
+        <br>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="new_post_modal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            <div class="modal-body">
+                <form id="new_post_form" method="post">
+                    <div class="form-group">
+                        <label><small class="text-muted">Title</small> </label>
+                        <input type="text" class="form-control" name="title" placeholder="Enter a title">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label><small class="text-muted">New Post</small> </label>
+                        <!--input type="text" name="content" placeholder="Write something"-->
+                        <textarea class="form-control" rows="10" cols="50" name="content" placeholder="Write Something"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-outline-secondary; float-right" value="Submit">Submit</button>
+                </form>
+            </div>
+                
+            <div class="modal-footer">
+              <!--button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button-->
+            </div>
+          </div>
+        </div>
+      </div>
+
+    
+</body> 
+
+<script src="/js/posts.js"></script>
+
+</html>  
+
+

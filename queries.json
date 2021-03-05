@@ -1,0 +1,11 @@
+{
+    "getAllPosts" : "SELECT userId, title, content, date FROM posts WHERE date <= ?",
+    "getPost" : "SELECT id FROM posts WHERE id = ?",
+    "createPost": "INSERT INTO posts (userId, title, content) VALUES (?)",
+    "deletePost" : "DELETE FROM posts WHERE ID = ?",
+    "updatePost" : "UPDATE posts SET title = ?, content = ? WHERE id = ?",
+    "createComment": "INSERT INTO comments (userId, content) VALUES (?)",
+    "getAllComments": "SELECT userId, content, date FROM comments WHERE parentPost = ?",
+    "deleteComment": "DELETE FROM comments WHERE ID = ?",
+    "updateComment": "UPDATE comments SET content = ? WHERE id = ?"
+}
